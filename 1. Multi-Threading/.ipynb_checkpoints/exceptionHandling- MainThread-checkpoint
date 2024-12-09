@@ -1,0 +1,20 @@
+import sys
+
+# Custom excepthook to display exception details
+def custom_excepthook(exc_type, exc_value, exc_tb):
+    print(f"Custom exception handler invoked:")
+    print(f"Exception Type: {exc_type}")
+    print(f"Exception Message: {exc_value}")
+    print(f"Traceback:{exc_tb}")
+
+# Set the custom excepthook to override the default behavior
+sys.excepthook = custom_excepthook
+
+# Function that raises an uncaught exception (ZeroDivisionError)
+def cause_error():
+    print("Starting function.")
+    result = 1 / 0  # This will raise ZeroDivisionError
+    print("Ending function.")
+
+# Triggering the exception manually to invoke the custom excepthook
+cause_error()
